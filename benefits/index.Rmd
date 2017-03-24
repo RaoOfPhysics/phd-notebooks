@@ -1,0 +1,183 @@
+---
+title: "Benefits of doing outreach"
+output: html_notebook
+---
+
+The survey presented some questions concerning the benefits of doing outreach, both to the researcher themself and to wider society.
+Here, we take a look at the ratings for these benefits in a bit of detail.
+
+```{r}
+# NOTE: This dataset is still private and so this data frame is generated
+# from within the storage environment of the file in question.
+dat <- read.csv(file = "../../quant_analysis/final_dataset.csv", 
+                header = TRUE)
+
+library(dplyr, warn.conflicts = FALSE)
+library(gridExtra, warn.conflicts = FALSE)
+library(ggplot2, warn.conflicts = FALSE)
+library(magrittr, warn.conflicts = FALSE)
+
+# for long form conversion of data frame
+library(reshape2)
+```
+
+## Benefits to society
+
+Below, we see responses to questions concerning one of the benefits to society: namely, "The public gets better knowledge/understanding of science."
+The responses are split into two categories based on whether the respondents had NOT participated in outreach previously ("No") or whether they had ("Yes").
+Responses with "Not applicable" (two, in total) have been removed from the dataset plotted below.
+
+```{r}
+ggplot(dat, aes(x = factor(better_knowledge_science), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“The public gets better knowledge/understanding of science.”")
+```
+
+Similarly, we see the responses for the remaining eight questions concerning societal benefits.
+
+```{r}
+ggplot(dat, aes(x = factor(judge_scientific_issues), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It enables the public to judge scientific issues for themselves.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(lives_informed_decisions), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It enables the public to make informed decisions about their lives.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(improves_understanding_scientists), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It helps improve the understanding of what scientists do.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(less_opposition), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“There is less opposition to scientific research.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(more_study_science), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“More people enter science education/science careers as a result.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(policy_making_equipped), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“Policy-makers are better equipped to make decisions.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(non_specialists), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“Non-specialists can participate in scientific research.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(informed_decisions), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "““Society can make informed decisions about research funding.”")
+```
