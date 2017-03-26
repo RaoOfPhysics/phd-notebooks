@@ -1,7 +1,15 @@
 ---
 title: "Benefits of doing outreach"
-output: html_notebook
+output: 
+  html_notebook: 
+    code_folding: hide
+    fig_caption: yes
+    highlight: tango
+    theme: united
+    toc: yes
 ---
+
+## Intro
 
 The survey presented some questions concerning the benefits of doing outreach, both to the researcher themself and to wider society.
 Here, we take a look at the ratings for these benefits in a bit of detail.
@@ -21,11 +29,12 @@ library(magrittr, warn.conflicts = FALSE)
 library(reshape2)
 ```
 
+The responses are split into two categories based on whether the respondents had NOT participated in outreach previously ("No") or whether they had ("Yes").
+Responses with "Not applicable" have been removed from the datasets plotted below.
+
 ## Benefits to society
 
 Below, we see responses to questions concerning one of the benefits to society: namely, "The public gets better knowledge/understanding of science."
-The responses are split into two categories based on whether the respondents had NOT participated in outreach previously ("No") or whether they had ("Yes").
-Responses with "Not applicable" (two, in total) have been removed from the dataset plotted below.
 
 ```{r}
 ggplot(dat, aes(x = factor(better_knowledge_science), y = ..count..)) + 
@@ -179,5 +188,163 @@ ggplot(dat, aes(x = factor(informed_decisions), y = ..count..)) +
                                 "2" = "2", "3" = "3", "4" = "4", 
                                 "5" = "5\nStrongly\nAgree")) + 
     ylab("Count") + 
-    labs(title = "““Society can make informed decisions about research funding.”")
+    labs(title = "“Society can make informed decisions about research funding.”")
 ```
+
+## Benefits to self
+
+We now examine -- breaking, as before, the responses down to those who have never participated in outreach before ("No") and those who have ("Yes") -- the ratings provided for benefits to oneself from doing outreach.
+
+```{r}
+ggplot(dat, aes(x = factor(experience_communications), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It gives me experience in communicating my research.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(name_known), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It gets my name known.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(attracts_funding), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It attracts research funding.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(advances_career), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It advances my career.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(feeling_enjoyment), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“I get a feeling of enjoyment.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(job_satisfaction), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It gives me job satisfaction.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(collaboration_opportunities), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It is an opportunity for others to contact me for collaborative purposes.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(research_new_ways), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It shapes the direction of my research or makes me think about it in new ways.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(makes_better_scientist), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It makes me a better scientist.”")
+```
+
