@@ -1,0 +1,277 @@
+---
+title: "Factors influencing outreach participation"
+output: 
+  html_notebook: 
+    code_folding: hide
+    fig_caption: yes
+    highlight: tango
+    theme: united
+    toc: yes
+---
+
+## Intro
+
+The survey presented some questions concerning factors -- good and bad -- that might influence one's outreach participation.
+Here, we take a look at the ratings for these factors in some detail.
+
+```{r}
+# NOTE: This dataset is still private and so this data frame is generated
+# from within the storage environment of the file in question.
+dat <- read.csv(file = "../../quant_analysis/final_dataset.csv", 
+                header = TRUE)
+
+library(dplyr, warn.conflicts = FALSE)
+library(gridExtra, warn.conflicts = FALSE)
+library(ggplot2, warn.conflicts = FALSE)
+library(magrittr, warn.conflicts = FALSE)
+
+# for long form conversion of data frame
+library(reshape2)
+```
+
+## Incentives
+
+```{r}
+ggplot(dat, aes(x = factor(duty_outreach), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“I have a duty as a scientist to take part in outreach activities.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(involvement_easy), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It is easy for interested scientists to get involved in outreach.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(money_support), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“I would participate in outreach activities if there was money\nto support participation.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(colleagues_approve), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“My colleagues would approve of my taking part in an outreach activity.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(homeinst_supports), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“My home institute generally supports scientists who take part\nin outreach activities.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(policy), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“Government policy encourages outreach.”")
+```
+
+## Barriers
+
+```{r}
+ggplot(dat, aes(x = factor(research_complex), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“My research is too complex for an outreach activity.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(bad_career), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“Taking part in an outreach activity could be bad for my career.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(no_comms_skills), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“Scientists do not have the communication skills for discussing\ntheir work with the non-specialist public.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(too_much_time), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“Participating in outreach takes too much time away from research.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(forced_defend), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“I might feel forced to defend my research when participating in outreach.”")
+```
+
+	
+	
+	
+
+```{r}
+ggplot(dat, aes(x = factor(commercial_barriers), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“Commercial barriers prevent greater participation in outreach.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(seriously), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“I would not be taken seriously as a scientist by the public\nif I participate in outreach.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(simplify), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“To communicate with the public, I have to overly simplify my work,\nwhich reduces its scientific correctness.”")
+```
+
