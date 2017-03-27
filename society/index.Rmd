@@ -1,0 +1,328 @@
+---
+title: "Science and society"
+output: 
+  html_notebook: 
+    code_folding: hide
+    fig_caption: yes
+    highlight: tango
+    theme: united
+    toc: yes
+---
+
+## Intro
+
+It is important to get an understanding of what scientists feel is the role of science within society.
+Some of the questions in the survey explored this theme.
+
+```{r}
+# NOTE: This dataset is still private and so this data frame is generated
+# from within the storage environment of the file in question.
+dat <- read.csv(file = "../../quant_analysis/final_dataset.csv", 
+                header = TRUE)
+
+library(ggplot2, warn.conflicts = FALSE)
+```
+
+## Society's perception of science
+
+While it is problematic to group all of "society" into a single group, it is nonetheless helpful to consider this classification as scientists see it.
+The terms "general public, "people", "public" etc. represent how scientists think of "the other", i.e., anyone outside their field of research specifically but the members of society who are not active scientists in general.
+
+```{r}
+ggplot(dat, aes(x = factor(no_appreciation_science), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“The general public does not appreciate how science affects them.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(people_understand_scientists), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“In general, people have little understanding of what scientists do.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(public_lack_knowledge), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“The public lack knowledge/education about the facts of science.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(local_community_facilities), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“When building new research facilities, the local community\nshould be involved in the decision-making process.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(lack_interest), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“There is a lack of interest in science among the general public.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(scientists_underestimate), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“Scientists underestimate how knowledgeable the general public is about science.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(country_outreach_culture), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“In the country of my institute/university, outreach and public communication\nare part of the academic culture.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(country_society_expects), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“In the country of my institute/university, society expects scientists to discuss\ntheir work in public (e.g. through media interviews, public lectures etc.).”")
+```
+
+## Public money and funding agencies
+
+```{r}
+ggplot(dat, aes(x = factor(imp_because_taxes), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“It is important for scientists to take part in outreach activities\nbecause taxes from citizens fund research.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(funding_should_support), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“Funding bodies should provide support for scientists to communicate their research to the non-specialist public.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(grants_wider_society), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“When applying for grants, scientists should be required to provide details\non how their research will be communicated to the wider society.”")
+```
+
+“Does the funding body you report to / your institution reports to require participation in outreach?”
+
+```{r}
+ggplot(dat, aes(x = factor(funding_outreach_rating), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ funding_body_require) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nVery\nexcessive",
+                                "2" = "2", 
+                                "3" = "3\nJust right", 
+                                "4" = "4", 
+                                "5" = "5\nVery\ninadequate")) + 
+    ylab("Count") + 
+    labs(title = "“In your opinion, this funding body’s current requirements for\noutreach participation are:”")
+```
+
+## Role of media
+
+```{r}
+ggplot(dat, aes(x = factor(media_science_inaccurate), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“The media coverage of science in general is accurate.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(media_science_inadequate), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“The media do not give science in general enough coverage.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(media_PP_inaccurate), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“The media coverage of particle physics is accurate.”")
+```
+
+```{r}
+ggplot(dat, aes(x = factor(media_PP_inadequate), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“The media do not give particle physics enough coverage.”")
+```
+
+The attitudes towards professional communicators could be used to gauge how scientists approach the communication of their work to broader society: can they do it themselves or would prefer to get help from experts who might understand the audiences better.
+
+```{r}
+ggplot(dat, aes(x = factor(professional_communicators), y = ..count..)) + 
+    geom_bar(stat = "count") + 
+    geom_text(stat = "count", aes(label = ..count.., 
+                                  y=..count..), 
+              vjust=-0.5) + 
+    facet_grid(. ~ previous_participation) + 
+    scale_x_discrete(name = NULL, 
+                     limits = c(1:5), 
+                     drop = FALSE, 
+                     labels = c("1" = "1\nStrongly\nDisagree",
+                                "2" = "2", "3" = "3", "4" = "4", 
+                                "5" = "5\nStrongly\nAgree")) + 
+    ylab("Count") + 
+    labs(title = "“Scientists should get help from professional communicators when communicating\ntheir findings to the non-specialist public.”")
+```
