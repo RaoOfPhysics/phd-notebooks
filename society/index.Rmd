@@ -217,7 +217,10 @@ ggplot(dat, aes(x = factor(grants_wider_society), y = ..count..)) +
     labs(title = "“When applying for grants, scientists should be required to provide details\non how their research will be communicated to the wider society.”")
 ```
 
-“Does the funding body you report to / your institution reports to require participation in outreach?”
+**NOTE**: The facetting of the following data is different from the rest.
+Rather than splitting the data into whether or not the respondents have previously participated in outreach, the data are split based on responses to the question "Does the funding body you report to / your institution reports to require participation in outreach?"
+The three options presented to the respondents were "Don't know", "No" and "Yes".
+An explanation of what these plots potentially show is below.
 
 ```{r}
 ggplot(dat, aes(x = factor(funding_outreach_rating), y = ..count..)) + 
@@ -237,6 +240,15 @@ ggplot(dat, aes(x = factor(funding_outreach_rating), y = ..count..)) +
     ylab("Count") + 
     labs(title = "“In your opinion, this funding body’s current requirements for\noutreach participation are:”")
 ```
+
+These data are a little hard to interpret, on the face of it.
+The question on what the respondents thought of their funding requirements was not a compulsory one: those who responded "Don't know" to the previous questions should ideally have skipped this question entirely or selected "N/A".
+However, a few (39) of those who did NOT know their funding body's outreach requirements nonetheless provided a response here.
+What does this mean?
+Do those who don't know of their funding body's requirements but who nevertheless feel this requirement is just right think that outreach should not be included in grant applications or funding calls?
+So, do they feel it OK that they are not explicitly told to do or not to do outreach?
+Further, what about those who feel that their funding body's requirements are inadequate, despite not knowing what they are?
+Does this mean that they would like to be explicitly told what they should or should not do?
 
 ## Role of media
 
