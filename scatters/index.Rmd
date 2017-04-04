@@ -1,0 +1,181 @@
+---
+title: "Scatter plots!"
+output: 
+  html_notebook: 
+    code_folding: hide
+    fig_caption: yes
+    highlight: tango
+    theme: united
+    toc: yes
+---
+
+## Intro
+
+Comparing assorted variables
+
+```{r}
+# NOTE: This dataset is still private and so this data frame is generated
+# from within the storage environment of the file in question.
+dat <- read.csv(file = "../../quant_analysis/final_dataset.csv", 
+                header = TRUE)
+
+library(ggplot2, warn.conflicts = FALSE)
+library(reshape2, warn.conflicts = FALSE)
+```
+
+## Audiences
+
+```{r}
+ggplot(dat, aes(x = easy_colleagues, y = imp_colleagues)) + 
+  geom_jitter(aes(colour = knol_colleagues), alpha = 0.6) + 
+  geom_count() + 
+  geom_smooth(method = "lm") + 
+  geom_rug(position = "jitter")
+```
+
+```{r}
+ggplot(dat, aes(x = easy_students, y = imp_students)) + 
+  geom_jitter(aes(colour = knol_students, size = knol_students), alpha = 0.6) + 
+  geom_smooth(method = "lm") + 
+  geom_rug(position = "jitter")
+```
+
+### Media
+
+```{r}
+ggplot(dat, aes(x = easy_scijournos, y = imp_scijournos)) + 
+  geom_jitter(aes(colour = knol_scijournos, size = knol_scijournos), alpha = 0.6) + 
+  geom_smooth(method = "lm") + 
+  geom_rug(position = "jitter")
+```
+
+```{r}
+ggplot(dat, aes(x = easy_scijournos, y = easy_genjournos)) + 
+  geom_jitter(aes(colour = previous_participation), alpha = 0.6) + 
+  geom_count() + 
+  geom_smooth() + 
+  geom_rug(position = "jitter")
+```
+
+### Students
+
+```{r}
+ggplot(dat, aes(x = imp_univ, y = imp_students)) + 
+  geom_jitter(aes(colour = previous_participation), alpha = 0.6) + 
+  geom_count() + 
+  geom_smooth() + 
+  geom_rug(position = "jitter")
+```
+
+```{r}
+ggplot(dat, aes(x = easy_univ, y = easy_students)) + 
+  geom_jitter(aes(colour = previous_participation), alpha = 0.6) + 
+  geom_count() + 
+  geom_smooth() + 
+  geom_rug(position = "jitter")
+```
+
+```{r}
+ggplot(dat, aes(x = knol_univ, y = knol_students)) + 
+  geom_jitter(aes(colour = previous_participation), alpha = 0.6) + 
+  geom_count() + 
+  geom_smooth() + 
+  geom_rug(position = "jitter")
+```
+
+### Other audiences
+
+```{r}
+ggplot(dat, aes(x = knol_NSP, y = imp_NSP)) + 
+  geom_jitter(aes(colour = easy_NSP >= 3, size = easy_NSP), alpha = 0.6) + 
+  geom_smooth(method = "lm") + 
+  geom_rug(position = "jitter")
+```
+
+```{r}
+att_NSP <- melt(as.matrix(
+  dat[c('imp_NSP', 'knol_NSP', 'easy_NSP')]
+  ))
+
+ggplot(att_NSP, aes(x=value, fill=Var2)) + 
+  geom_bar(stat='count', color="white")
+
+```
+
+```{r}
+ggplot(dat, aes(x = knol_govt, y = imp_govt)) + 
+  geom_jitter(aes(colour = easy_govt >= 3, size = easy_govt), alpha = 0.6) + 
+  geom_smooth(method = "lm") + 
+  geom_rug(position = "jitter")
+```
+
+```{r}
+att_govt <- melt(as.matrix(
+  dat[c('imp_govt', 'knol_govt', 'easy_govt')]
+  ))
+
+ggplot(att_govt, aes(x=value, fill=Var2)) + 
+  geom_bar(stat='count', color="white")
+
+```
+
+```{r}
+ggplot(dat, aes(x = knol_industry, y = imp_industry)) + 
+  geom_jitter(aes(colour = easy_industry >= 3, size = easy_industry), alpha = 0.6) + 
+  geom_smooth(method = "lm") + 
+  geom_rug(position = "jitter")
+```
+
+```{r}
+att_industry <- melt(as.matrix(
+  dat[c('imp_industry', 'knol_industry', 'easy_industry')]
+  ))
+
+ggplot(att_industry, aes(x=value, fill=Var2)) + 
+  geom_bar(stat='count', color="white")
+
+```
+
+## Benefits
+
+```{r}
+ggplot(dat, aes(x = job_satisfaction, y = feeling_enjoyment)) + 
+  geom_jitter(aes(colour = previous_participation), alpha = 0.6) + 
+  geom_count() + 
+  geom_smooth() + 
+  geom_rug(position = "jitter")
+```
+
+```{r}
+ggplot(dat, aes(x = attracts_funding, y = advances_career)) + 
+  geom_jitter(aes(colour = previous_participation), alpha = 0.6) + 
+  geom_count() + 
+  geom_smooth() + 
+  geom_rug(position = "jitter")
+```
+
+## Attitudes
+
+```{r}
+ggplot(dat, aes(x = duty_outreach, y = no_appreciation_science)) + 
+  geom_jitter(aes(colour = previous_participation), alpha = 0.6) + 
+  geom_count() + 
+  geom_smooth() + 
+  geom_rug(position = "jitter")
+```
+
+```{r}
+ggplot(dat, aes(x = people_understand_scientists, y = no_appreciation_science)) + 
+  geom_jitter(aes(colour = previous_participation), alpha = 0.6) + 
+  geom_count() + 
+  geom_smooth() + 
+  geom_rug(position = "jitter")
+```
+
+```{r}
+ggplot(dat, aes(x = involvement_easy, y = research_complex)) + 
+  geom_jitter(aes(colour = previous_participation), alpha = 0.6) + 
+  geom_count() + 
+  geom_smooth() + 
+  geom_rug(position = "jitter")
+```
