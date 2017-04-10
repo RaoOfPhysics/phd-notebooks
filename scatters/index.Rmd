@@ -154,6 +154,14 @@ ggplot(dat, aes(x = attracts_funding, y = advances_career)) +
   geom_rug(position = "jitter")
 ```
 
+```{r}
+ggplot(dat, aes(x = better_knowledge_science, y = improves_understanding_scientists)) + 
+  geom_jitter(aes(colour = previous_participation), alpha = 0.6) + 
+  geom_count() + 
+  geom_smooth() + 
+  geom_rug(position = "jitter")
+```
+
 ## Attitudes
 
 ```{r}
