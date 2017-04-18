@@ -217,8 +217,19 @@ ggplot(dat, aes(x = factor(grants_wider_society), y = ..count..)) +
     labs(title = "“When applying for grants, scientists should be required to provide details\non how their research will be communicated to the wider society.”")
 ```
 
+```{r}
+ggplot(dat, aes(x = factor(funding_body_require), y = ..count..)) + 
+  geom_bar(stat = "count") + 
+  geom_text(stat = "count", aes(label = ..count.., 
+                                y=..count..), 
+            vjust=-0.5) + 
+  theme(axis.title.x=element_blank()) + 
+  ylab("Count") + 
+  labs(title = "“Does the funding body you report to / your institution reports to\nrequire participation in outreach?”")
+```
+
 **NOTE**: The facetting of the following data is different from the rest.
-Rather than splitting the data into whether or not the respondents have previously participated in outreach, the data are split based on responses to the question "Does the funding body you report to / your institution reports to require participation in outreach?"
+Rather than splitting the data into whether or not the respondents have previously participated in outreach, the data are split based on responses to the question previous question: "Does the funding body you report to / your institution reports to require participation in outreach?"
 The three options presented to the respondents were "Don't know", "No" and "Yes".
 An explanation of what these plots potentially show is below.
 
