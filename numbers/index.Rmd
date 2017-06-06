@@ -1,0 +1,41 @@
+---
+title: "Numbers"
+output: 
+  html_notebook: 
+    code_folding: hide
+    fig_caption: yes
+    highlight: tango
+    theme: united
+    toc: yes
+---
+
+```{r}
+# NOTE: This dataset is still private and so this data frame is generated
+# from within the storage environment of the file in question.
+dat <- read.csv(file = "../../quant_analysis/final_dataset.csv", 
+                header = TRUE)
+
+library(ggplot2, warn.conflicts = FALSE)
+```
+
+## Audiences
+
+|Audience|Score|
+|--:|:--|
+|Colleagues|`r mean(dat$imp_colleagues, na.rm = T) + mean(dat$easy_colleagues, na.rm = T) + mean(dat$knol_colleagues, na.rm = T)`|
+|Other scientists|`r mean(dat$imp_otherscientists, na.rm = T) + mean(dat$easy_otherscientists, na.rm = T) + mean(dat$knol_otherscientists, na.rm = T)`|
+|University students|`r mean(dat$imp_univ, na.rm = T) + mean(dat$easy_univ, na.rm = T) + mean(dat$knol_univ, na.rm = T)`|
+|Science journalists|`r mean(dat$imp_scijournos, na.rm = T) + mean(dat$easy_scijournos, na.rm = T) + mean(dat$knol_scijournos, na.rm = T)`|
+|Teachers|`r mean(dat$imp_teachers, na.rm = T) + mean(dat$easy_teachers, na.rm = T) + mean(dat$knol_teachers, na.rm = T)`|
+|School students|`r mean(dat$imp_students, na.rm = T) + mean(dat$easy_students, na.rm = T) + mean(dat$knol_students, na.rm = T)`|
+|Press offices|`r mean(dat$imp_pressoffice, na.rm = T) + mean(dat$easy_pressoffice, na.rm = T) + mean(dat$knol_pressoffice, na.rm = T)`|
+|Non-specialist public|`r mean(dat$imp_NSP, na.rm = T) + mean(dat$easy_NSP, na.rm = T) + mean(dat$knol_NSP, na.rm = T)`|
+|Government|`r mean(dat$imp_govt, na.rm = T) + mean(dat$easy_govt, na.rm = T) + mean(dat$knol_govt, na.rm = T)`|
+|Other media|`r mean(dat$imp_othermedia, na.rm = T) + mean(dat$easy_othermedia, na.rm = T) + mean(dat$knol_othermedia, na.rm = T)`|
+|Industry|`r mean(dat$imp_industry, na.rm = T) + mean(dat$easy_industry, na.rm = T) + mean(dat$knol_industry, na.rm = T)`|
+|General journalists|`r mean(dat$imp_genjournos, na.rm = T) + mean(dat$easy_genjournos, na.rm = T) + mean(dat$knol_genjournos, na.rm = T)`|
+
+---
+
+- `r mean(dat$no_appreciation_science, na.rm = T)` + `r sd(dat$no_appreciation_science, na.rm = T)`
+
